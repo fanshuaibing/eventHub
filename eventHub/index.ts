@@ -1,4 +1,4 @@
-const eventHub = {
+const EventHub = {
   cache: {},
   on(eventName: string, fn: EventHubFn) {
     this.cache[eventName] = this.cache[eventName] || [];
@@ -6,7 +6,7 @@ const eventHub = {
   },
   emit(eventName: string, data?: unknown) {
     (this.cache[eventName] || []).forEach((fn) => {
-      fn.call(data);
+      fn(data);
     });
   },
   off(eventName: string, fn: EventHubFn) {
@@ -35,4 +35,4 @@ function indexOf(arr, fn) {
   return index;
 }
 
-export default eventHub;
+export default EventHub;
